@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Movie = (props) => {
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState();
+  // We can also start with useState(). This means initially movie is undefined so we get inside the loop in line 35.
 
   useEffect(() => {
     const id = props.match.params.id;
-    console.log(props);
+    // console.log(props);
 
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
@@ -15,7 +16,7 @@ const Movie = (props) => {
         .get(`http://localhost:5000/api/movies/${id}`)
         .then(response => {
           // console.log('The props are ', props);
-          console.log('The response is ', response.data);
+          // console.log('The response is ', response.data);
           setMovie(response.data);
         })
         .catch(error => {
