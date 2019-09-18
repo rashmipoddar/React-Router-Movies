@@ -8,8 +8,9 @@ const Movie = (props) => {
   
   // We can also start with useState(). This means initially movie is undefined so we get inside the loop in line 36.
 
+  const id = props.match.params.id;
   useEffect(() => {
-    const id = props.match.params.id;
+    
     // console.log(props);
 
     // change ^^^ that line and grab the id from the URL
@@ -26,19 +27,19 @@ const Movie = (props) => {
           console.error(error);
         });
 
-  },[]);
+  },[id]);
   
   // Uncomment this only when you have moved on to the stretch goals
-  const saveMovie = () => {
-    const addToSavedList = props.addToSavedList;
-    addToSavedList(movie)
-  }
+  // const saveMovie = () => {
+  //   const addToSavedList = props.addToSavedList;
+  //   addToSavedList(movie)
+  // }
 
   if (!movie) {
     return <div>Loading movie information...</div>;
   }
 
-  return <MovieCard movie={movie} saveMovie={saveMovie}/>
+  return <MovieCard movie={movie} addToSavedList={props.addToSavedList}/>
 
 }
 
